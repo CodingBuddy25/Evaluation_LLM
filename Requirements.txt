@@ -1,0 +1,8 @@
+openai
+langchain_openai
+langchain_core
+langgraph
+os
+pm4py
+numpy
+matplotlib
