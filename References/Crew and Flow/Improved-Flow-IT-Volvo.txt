@@ -1,0 +1,8 @@
+[CP]1. Volvo. (2024). Cybersecurity in Volvos. Volvo Cars. https://volvo.custhelp.com/app/answers/detail/a_id/10338/~/cybersecurity-in-volvos
+[CP]2. Volvo Group. (2024). Incident Response Plan. Volvo Group. https://www.volvogroup.com/content/dam/volvo-group/markets/master/suppliers/purchasing-within-the-volvo-group/incident-response-plan.pdf
+[None]3. The Org. (2024). Volvo Group - Cybersecurity and IT Security Team. The Org. https://theorg.com/org/volvo-group/teams/cybersecurity-and-it-security-team
+[Non-AA]4. CSIDB. (2021). Volvo (2021-11-30) Cyber-Attack Hack Breach - The Cyber Security Incident Database. CSIDB. https://www.csidb.net/csidb/incidents/61d023aa-184d-470c-b388-b4482e91eb4e/
+[Non-AR]5. UpGuard. (2023). Volvo Security Rating, Vendor Risk Report, and Data Breaches. UpGuard. https://www.upguard.com/security-report/volvo
+[AR]6. Arias, M., & Rojas, E. (2013). BPIC 2013: Volvo Incident and Problem Management Behavior Analysis. Pontificia Universidad Católica de Chile. https://michaelarias.sitios.ing.uc.cl/wp-content/uploads/2015/09/Volvo-Incident-and-Problem-Management-Behavior-Analysis.pdf
+[AR]7. Bautista, A. D., Akbar, S. M. K., Alvarez, A., Metzger, T., & Reaves, M. L. (2013). Process Mining in Information Technology Incident Management: A Case Study at Volvo Belgium. CEUR-WS.org. https://ceur-ws.org/Vol-1052/paper2.pdf
+[AR]8. Kang, C. J., Kang, Y. S., Lee, Y. S., Noh, S., Kim, H. C., Lim, W. C., Kim, J., & Hong, R. (2013). Process Mining-based Understanding and Analysis of Volvo IT’s Incident and Problem Management Processes. CEUR-WS.org. http://star.informatik.rwth-aachen.de/Publications/CEUR-WS/Vol-1052/paper8.pdf
