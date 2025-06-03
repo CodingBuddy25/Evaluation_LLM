@@ -23,11 +23,21 @@ def remove_characters(file, Menu):
         removed_characters = re.findall(r"\[(https?://[^\]]+)\]", file)
     return removed_characters
 
-def Evaluate_domain_knowledge(Menu, foldernames, files):
+def Evaluate_domain_knowledge():
     results = []
-    for foldernames in ["DoS4_DK/"]:
-        for file in ["Environmental-P2P-Walmart","audit-O2C","inefficiencies-AP-GE","IT-IT-Volvo","Operational-Travel-Google",
-"regulatory-loan-Wells"]:
+
+    #use this structure to loop through the files that you want analysed
+    files = [
+    "audit-O2C-PG",
+    "environment-P2P-Walmart",
+    "inefficiencies-AP-GE",
+    "IT-It-Volvo",
+    "operational-travel-google",
+    "regulatory-loan-wellsfargo"
+    ]
+    foldernames = ["DoS2_DK/DoS2_run2/"]
+    for foldername in foldernames:
+        for file in files:
             file = foldernames + file
             print("file = ",file)
             print("_________________________FILE:", file, "_______________________")
@@ -46,80 +56,13 @@ def Evaluate_domain_knowledge(Menu, foldernames, files):
             results.append([file,percentage])
             print("\n")
     print(results)
-    return results
-
-def preprocessing(files, graders, results):
-
-    return results
-def plotting_results(files, graders, results):
-    """
-        This function uses the previously generated percentages to generate graphs. They are saved.
-        A small portion of the results looks like this:
-        results = [['Evaluate_R/AP_1.txt', 84.45212240868707], ['Evaluate_R/AP_2.txt', 73.08289789577744], ['Evaluate_R/IT_cyber_1.txt', 85.80359651587524]]
-       It is a nested list of the percentages
-    """
-
-    fig = plt.figure(figsize=(12, 6))
-
-
-    #plot per grader line charts
-    renske = results[0:12]
-    naomi = results[12:24]
-    max2 = results[24:36]
-    max = results[36:]
-    values_R = [item[1] for item in renske]
-    values_N = [item[1] for item in naomi]
-    values_M = [item[1] for item in max]
-    values_M2 = [item[1] for item in max2]
-    plt.ylim(0, 100)
-
-    plt.plot(files, values_R, label='Renske')
-    plt.plot(files, values_N, label='Naomi')
-    plt.plot(files, values_M, label='Max1')
-    plt.plot(files, values_M2, label='Max2')
-
-    plt.legend(["Renske","Naomi","Max1","Max2"])
-    plt.tight_layout()
-    plt.title("Percentage DK per file per grader")
-    plt.ylabel('Percentage (%)')
-    plt.tight_layout()
-
-    results_per_paper = []
-    #Will be a nested list [[56.35,45.64,56.65,45.65],[89.87,67.98,56.65,45.65]...]
-
-    for count in range(12):
-        elements_per_paper = [renske[count][1], naomi[count][1], max2[count][1], max[count][1]]
-        results_per_paper.append(elements_per_paper)
-
-    fig2 = plt.figure(figsize=(12, 6))
-    plt.boxplot(results_per_paper,vert=False)
-    plt.title("Box plot of DK per file")
-    plt.tight_layout()
-    plt.xlim(0, 100)
-
-
-    fig3 = plt.figure(figsize=(10, 6))
-    averages = [np.average(paper_stats) for paper_stats in results_per_paper]
-    sds = [np.std(paper_stats) for paper_stats in results_per_paper]
-    # plt.bar(files, averages)
-    plt.bar(["AP_1","AP_2","INC_1","INC_2","LA_1","LA_2", "O2C_1", "O2C_2", "P2P_1", "P2P_2", "EXP_1", "EXP_2"], averages)
-    # plt.errorbar(files, averages, yerr=sds, fmt="o", color="r")
-    plt.errorbar(["AP_1","AP_2","INC_1","INC_2","LA_1","LA_2", "O2C_1", "O2C_2", "P2P_1", "P2P_2", "EXP_1", "EXP_2"], averages, yerr=sds, fmt="o", color="r")
-    plt.xticks(rotation='vertical')
-    # plt.title("Box plot with standard deviations of domain knowledge averages")
-    plt.ylabel('Percentage (%)')
-    plt.show()
 
 Menu = 1
+#
+# files = ['/AP_1.txt', '/AP_2.txt', '/IT_cyber_1.txt',
+#              '/IT_cyber_2.txt', '/Loan_application_1.txt', '/Loan_application_2.txt',
+#              '/O2C_1.txt', '/O2C_2.txt', '/P2P_1.txt', '/P2P_2.txt',
+#              '/Travel_expenses_1.txt', '/Travel_expenses_2.txt',]
+# graders = ["Evaluate_R","Evaluate_N","Evaluate_M2","Evaluate_M"]
 
-files = ['/AP_1.txt', '/AP_2.txt', '/IT_cyber_1.txt',
-             '/IT_cyber_2.txt', '/Loan_application_1.txt', '/Loan_application_2.txt',
-             '/O2C_1.txt', '/O2C_2.txt', '/P2P_1.txt', '/P2P_2.txt',
-             '/Travel_expenses_1.txt', '/Travel_expenses_2.txt',]
-graders = ["Evaluate_R","Evaluate_N","Evaluate_M2","Evaluate_M"]
-
-while Menu != 0:
-    Menu = int(input("1 for evaluate domain knowledge, 0 to quit:      "))
-    if Menu == 1:
-        results = Evaluate_domain_knowledge(Menu, graders, files)
-        plotting_results(files, graders, results)
+Evaluate_domain_knowledge()

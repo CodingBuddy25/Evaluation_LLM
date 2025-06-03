@@ -7,22 +7,21 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 def LLM_domain_knowledge(file, specific_file_question):
-    ### This function is there that when the different files need to be analysed, there are all slightly different
-    ### evaluation prompts. In creating_the_question we will look at the file (input) and then return the right question.
+    """This function is there that when the different files need to be analysed, there are all slightly different
+     evaluation prompts. In creating_the_question we will look at the file (input) and then return the right question.
     #PM-LLM-benchmark question was
     # Given the following question: ... How would you grade the following answer from 1 (minimum) to 10 (maximum)?
-    #I have changed this question to: see evaluation_question
+    #I have changed this question to: see evaluation_question"""
 
     file_path = f"""/Users/rensk/Scriptie/Reevaluation/LLM-as-a-judge/Evaluations Max/{file}"""
     with open(file_path, "r", encoding="utf-8") as file:
         answer_text = file.read()
 
-    #Exampke is handling IT incidents at Volvo
     evaluation_question = f"""Given the following question: {specific_file_question}"
         And the answer to the question:
         {answer_text}
         Please evaluate the above answer on the amount of specific external ecosystem domain knowledge. 
-        It is specific external ecosystem domain knowledge when it is linked to the company or the step being analyzed 
+        It is specific external ecosystem domain knowledge when it is linked to the company and the step being analyzed 
         within the company and process mining domain knowledge. 
         Return a percentage of the text that has specific external ecosystem domain knowledge.
         """
@@ -67,11 +66,11 @@ def multiple_run_dkanalysis(dict_with_percentages):
 
 
 def LLM_prompt_references(references):
-    ### This function is there that when the different files need to be analysed, there are all slightly different
-    ### evaluation prompts. In creating_the_question we will look at the file (input) and then return the right question.
-    #PM-LLM-benchmark question was
-    # Given the following question: ... How would you grade the following answer from 1 (minimum) to 10 (maximum)?
-    #I have changed this question to:
+    """This function is there that when the different files need to be analysed, there are all slightly different
+    evaluation prompts. In creating_the_question we will look at the file (input) and then return the right question.
+    PM-LLM-benchmark question was
+    Given the following question: ... How would you grade the following answer from 1 (minimum) to 10 (maximum)?
+    I have changed this question to:"""
 
     print(len(references), "length references")
 
@@ -813,4 +812,62 @@ if __name__ == "__main__":
             manually_processed_data = retreive_LLM_results()
             plotting_graphs(manually_processed_data)
             additional_graphs(manually_processed_data)
+def plotting_box_plot_results(files, graders, results):
+    """
+        This function uses the outputs from the main.py file to plot results.
+         The (now redundant) function has been moved to this file to keep the main.py file clean.
+        A small portion of the results looks like this:
+        results = [['Evaluate_R/AP_1.txt', 84.45212240868707], ['Evaluate_R/AP_2.txt', 73.08289789577744], ['Evaluate_R/IT_cyber_1.txt', 85.80359651587524]]
+       It is a nested list of the percentages
+    """
 
+    fig = plt.figure(figsize=(12, 6))
+
+
+    #plot per grader line charts
+    renske = results[0:12]
+    naomi = results[12:24]
+    max2 = results[24:36]
+    max = results[36:]
+    values_R = [item[1] for item in renske]
+    values_N = [item[1] for item in naomi]
+    values_M = [item[1] for item in max]
+    values_M2 = [item[1] for item in max2]
+    plt.ylim(0, 100)
+
+    plt.plot(files, values_R, label='Renske')
+    plt.plot(files, values_N, label='Naomi')
+    plt.plot(files, values_M, label='Max1')
+    plt.plot(files, values_M2, label='Max2')
+
+    plt.legend(["Renske","Naomi","Max1","Max2"])
+    plt.tight_layout()
+    plt.title("Percentage DK per file per grader")
+    plt.ylabel('Percentage (%)')
+    plt.tight_layout()
+
+    results_per_paper = []
+    #Will be a nested list [[56.35,45.64,56.65,45.65],[89.87,67.98,56.65,45.65]...]
+
+    for count in range(12):
+        elements_per_paper = [renske[count][1], naomi[count][1], max2[count][1], max[count][1]]
+        results_per_paper.append(elements_per_paper)
+
+    fig2 = plt.figure(figsize=(12, 6))
+    plt.boxplot(results_per_paper,vert=False)
+    plt.title("Box plot of DK per file")
+    plt.tight_layout()
+    plt.xlim(0, 100)
+
+
+    fig3 = plt.figure(figsize=(10, 6))
+    averages = [np.average(paper_stats) for paper_stats in results_per_paper]
+    sds = [np.std(paper_stats) for paper_stats in results_per_paper]
+    # plt.bar(files, averages)
+    plt.bar(["AP_1","AP_2","INC_1","INC_2","LA_1","LA_2", "O2C_1", "O2C_2", "P2P_1", "P2P_2", "EXP_1", "EXP_2"], averages)
+    # plt.errorbar(files, averages, yerr=sds, fmt="o", color="r")
+    plt.errorbar(["AP_1","AP_2","INC_1","INC_2","LA_1","LA_2", "O2C_1", "O2C_2", "P2P_1", "P2P_2", "EXP_1", "EXP_2"], averages, yerr=sds, fmt="o", color="r")
+    plt.xticks(rotation='vertical')
+    # plt.title("Box plot with standard deviations of domain knowledge averages")
+    plt.ylabel('Percentage (%)')
+    plt.show()
