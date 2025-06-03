@@ -1,0 +1,41 @@
+# Environmental Risks in the Purchase-to-Pay Process at Walmart
+
+## Introduction
+
+The Purchase-to-Pay (P2P) process at Walmart is a critical framework that encompasses all stages from identifying needs for goods and services to the final payment to suppliers. Each step of this intricate process bears potential environmental risks, which can arise from various causes related to procurement and invoicing. This report aims to analyze five key stages in the P2P process at Walmart, linking each to corresponding steps in the PM_agent analysis and highlighting potential environmental risks along with their root causes.
+
+## Core Steps in Walmart’s Purchase-to-Pay Process
+
+\hl{### 1. Receive Invoice -> Validate Invoice
+
+One of the most frequent steps in Walmart's P2P process is the validation of invoices received, with a notable frequency of 36,763 (PM_agent). This step is pivotal as it serves as a checkpoint where environmental compliance can be evaluated. If invoices do not adequately demonstrate conformity with sustainability practices, they can introduce risks such as delayed payments and increased ecological footprints. The validation process may be jeopardized due to insufficient eco-friendly documentation from suppliers, thereby complicating the financial workflow. Research indicates that automation and electronic invoicing can reduce errors in this step, leading to a smoother process (Wheeler et al., 2020).
+
+For further details, refer to: [The Importance of E-Invoicing for Sustainability](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8437773/)
+
+### 2. Approve Purchase Requisition -> Create Purchase Order
+
+The frequency of 33,295 in this area highlights the importance of assessing supplier environmental practices during the requisition approval process. An ineffective analysis of suppliers' past performances may culminate in Walmart procuring goods with higher environmental risks (PM_agent). If the requisition approval does not incorporate a robust evaluation of suppliers’ sustainability standards, the subsequent purchase order could involve non-compliant materials. Implementing more stringent vendor qualification processes could significantly reduce these risks (Bai et al., 2019).
+
+For further details, refer to: [Supplier Environmental Risk Management](https://www.mckinsey.com/capabilities/operations/our-insights/a-practical-approach-to-supply-chain-risk-management)
+
+### 3. Send Purchase Order -> Receive Goods
+
+The step of sending purchase orders and receiving goods has been recorded with a frequency of 31,589 (PM_agent). Here, it is vital for Walmart to ensure that suppliers meet specific environmental standards. Failure to do so could lead to receiving goods that don't comply with sustainability goals, potentially compromising Walmart's environmental initiatives (PM_agent). A thorough vetting process for suppliers, including comprehensive compliance checks prior to shipment, is essential to mitigate these risks. Failure to enforce strict environmental evaluations during order placements may culminate in unsustainable procurement decisions and reinforce detrimental environmental impacts (Hazen et al., 2014).
+
+For further information, refer to: [Green Supply Chain Management: A State of the Art Literature Review](https://www.sciencedirect.com/science/article/abs/pii/S0925527314000024)
+
+### 4. Validate Invoice -> Approve Invoice
+
+Similar to the first step, the validate invoice to approve invoice section has a frequency of 33,157 (PM_agent). This indicates a critical juncture for the ecological risk of approving and paying for goods or services that may not align with environmental regulations. The primary cause for risks in this sector arises from insufficient checks to ensure that the goods or services rendered are eco-compliant before payments are processed. Implementing comprehensive sustainability criteria in invoice validation could bolster compliance while enhancing overall environmental outcomes (Yu et al., 2016).
+
+For additional insights, refer to: [Incorporating Sustainability in Supply Chain Management](https://www.mckinsey.com/industries/consumer-packaged-goods/our-insights/cpg-operations-how-to-win-in-a-rapidly-changing-environment)
+
+### 5. Reject Goods -> Receive Goods
+
+Even though this step has a lower frequency of 8,754 (PM_agent), it stands out due to its significance in managing environmentally harmful goods. The potential risks emerge when goods fail to meet environmental standards; inadequate processes for rejecting those goods may allow unsustainable products to enter the Walmart supply chain. Furthermore, employee training regarding identifying eco-harmful products is crucial but often lacking, which can exacerbate these risks by resulting in incorrect acceptance of goods. Regaining compliance through effective return policies aligned with sustainability practices is imperative to minimize risk exposure (Montabon et al., 2018).
+
+For further details, refer to: [Managing Environmental Risks Through Effective Supply Chain Policies](https://www.sciencedirect.com/science/article/abs/pii/S0925527317309055)
+
+## Conclusion
+
+This report has thoroughly examined critical stages in Walmart's P2P process that are susceptible to environmental risks.} By addressing potential causes at each juncture, Walmart can significantly mitigate such risks and contribute positively to sustainability efforts. Investing in supplier evaluations, stringent documentation requirements, and enhanced training for employees in identifying compliance issues are vital steps forward. Through a committed approach to enhancing environmental practices within its P2P process, Walmart can lead by example in the retail sector, showcasing how larger corporations can integrate sustainability into their operational frameworks.

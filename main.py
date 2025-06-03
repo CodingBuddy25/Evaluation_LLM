@@ -23,13 +23,15 @@ def remove_characters(file, Menu):
         removed_characters = re.findall(r"\[(https?://[^\]]+)\]", file)
     return removed_characters
 
-def Evaluate_domain_knowledge(Menu, graders, files):
+def Evaluate_domain_knowledge(Menu, foldernames, files):
     results = []
-    for grader in graders:
-        for file in files:
-            file = grader + file
+    for foldernames in ["DoS4_DK/"]:
+        for file in ["Environmental-P2P-Walmart","audit-O2C","inefficiencies-AP-GE","IT-IT-Volvo","Operational-Travel-Google",
+"regulatory-loan-Wells"]:
+            file = foldernames + file
+            print("file = ",file)
             print("_________________________FILE:", file, "_______________________")
-            latex_text_opened = open(file, 'r')
+            latex_text_opened = open(file, 'r', encoding="utf-8")
             latex_text_read = latex_text_opened.read()
             cleaned_text = remove_hl(latex_text_read)
             char_count = len(cleaned_text)
