@@ -1,0 +1,37 @@
+# Operational Risks in the Travel Expenses Process at Google
+
+\hl{In today's global marketplace, managing travel expenses is critical to operational efficiency. Google, as a pioneering tech company, adopts unique travel expense processes that significantly impact its workforce.} This report aims to identify operational risks in Google's travel expenses process by analyzing key steps that stand out through the PM_agent and PM_diagnostic tasks. A thorough investigation into these steps will provide insights into potential causes of operational risks and suggest improvements.
+
+\hl{## 1. Booking Confirmation -> Payment Processing
+
+The 'Booking Confirmation' and 'Payment Processing' steps are vital to traveling efficiency at Google. During 'Booking Confirmation,' employees often experience delays if the system struggles to validate travel requests or if unexpected changes arise. Delays at this juncture typically trigger a sequence of consequences. For example, if an employee's booking is not confirmed in a timely manner, it affects their ability to proceed with 'Payment Processing' for travel costs [Navan, n.d.](https://navan.com/resources/glossary/what-is-travel-expense-management).
+
+An operational risk here includes miscommunication between the booking and payment systems and the resultant delays. This can jeopardize employee satisfaction, making them less willing to travel as such unpredictability may lead to further disruptions. Research from AltexSoft notes that digital platforms for travel and expense management should facilitate seamless integration between these steps [AltexSoft, n.d.](https://www.altexsoft.com/blog/travel-and-expense-management/), thus limiting inefficiencies.
+
+## 2. Payment Processing -> Travel Cost Approval
+
+Transitioning from 'Payment Processing' to 'Travel Cost Approval' uncovers further operational risks. The 'Payment Processing' phase is critical because errors in this step can initiate a detrimental cycle of rework that cascades to the approval layers.} If costs are erroneously processed, approvals might get delayed as discrepancies arise requiring clarification. Such delays can frustrate employees and may lead them to either forgo intended travel plans or bypass proper channels for reimbursement [Business Booking, n.d.](https://business.booking.com/en-us/business-travel-resources/guides/guide-to-business-travel-and-expense-management/).
+
+\hl{Moreover, unclear criteria for what constitutes acceptable travel expenses can cause additional bottlenecks.} This insurgence of rework from unclear guidelines often leads to dissatisfaction and lower morale amongst employees [Emburse, n.d.](https://www.emburse.com/resources/12-travel-and-expense-management-best-practices). \hl{Thus, empowering the finance department with clearer, automated systems could diminish these operational risks associated with approvals.
+
+## 3. Travel Cost Approval -> Cost Reconciliation
+
+Following 'Travel Cost Approval,' the 'Cost Reconciliation' process step further elucidates operational risks at Google. After approvals, extensive checks and balances ensue to ensure comprehensive accounting of all expenses [Alcock, C., 2020](https://icpmconference.org/2020/wp-content/uploads/sites/4/2020/10/ICPM_2020_paper_157.pdf). A considerable operational risk here arises from the potential for discrepancies between the approved expenses and the invoices received.
+
+These discrepancies can stem from manual data entry errors, arising from several lengthy transactions. Furthermore, as multiple inputs can influence the reconciliation step, lack of efficient data integration across systems can intensify these risks. Research suggests automating reconciliation processes through analytics and machine learning can help address these issues [Lakshminarayanan, K., 2021](https://www.altexsoft.com/blog/travel-expense-management-analytics-ml/). Effective processing not only assures compliance but enhances overall financial accuracy.
+
+## 4. Cost Reconciliation -> Feedback Collection
+
+The feedback collection process is pivotal post-reconciliation, serving as a conduit measuring the efficacy of previous steps. Hindered feedback loops may inflate risks; if employees believe their concerns regarding travel expense policies do not reach decision-makers, it builds resentment and distrust [TravelPerk, 2025](https://www.travelperk.com/guides/travel-expense-management/). When discrepancies in expense reporting are uncovered, failing to adapt the processes accordingly can curtail improvements in operations.}
+
+Investing in an accessible feedback mechanism ensures continued enhancement of the travel expense process, highlighting that operational risks are not merely about cost but employee engagement and organizational culture [Tipalti, n.d.](https://tipalti.com/resources/learn/travel-and-expense-management/). Successful companies often see feedback as an opportunity rather than a setback, which can help transform the operational risks into organizational learning gains.
+
+\hl{## 5. Feedback Collection -> Continuous Improvement
+
+Finally, the link from 'Feedback Collection' to 'Continuous Improvement' represents an essential aspect of understanding operational risks. An ineffective feedback collection process diminishes the company's ability to adapt and improve its travel expense protocols. A strong operational risk exists when an organization does not utilize feedback to inform its policies, leading to outdated practices that do not meet current employee needs.
+
+As highlighted in the KPMG reports, understanding feedback mechanisms and adapting to new business travel norms significantly mitigates risks of stagnation and inefficiency [KPMG, 2021](https://home.kpmg/xx/en/home/insights/2021/02/the-future-of-business-travel.html). Implementing iterative feedback loops ensures that the travel expense processes align with employee expectations and industry regulations, maintaining relevance and efficiency.}
+
+## Conclusion
+
+\hl{In conclusion, analyzing Google's travel expenses process reveals critical operational risks concentrated around key areas from booking confirmations through feedback collection.} By addressing these potential pitfalls through enhanced communication, automation, and responsive management, Google can reduce operational risks and ensure a more efficient and satisfying travel experience for employees. Future improvement measures should focus on integrating comprehensive data systems, establishing clear communication channels, and fostering a culture oriented towards continuous feedback and innovation.

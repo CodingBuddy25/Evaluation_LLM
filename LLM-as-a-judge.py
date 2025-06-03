@@ -781,37 +781,24 @@ if __name__ == "__main__":
     Menu = 10
 
     while Menu != 0:
-        Menu = int(input("1 for LLM domain knowledge analysis, 2 for manual reference analysis results, 3 for LLM reference analysis, 0 to quit:      "))
+        Menu = int(input("1 for LLM domain knowledge analysis, 2 for LLM reference analysis, 0 to quit:      "))
         if Menu == 1:
             perform_DK_LLM_evaluation()
 
-        if Menu == 2:
-            preprocessed_data = preprocess_references("All_references_classified.txt")
-            plotting_graphs(preprocessed_data)
-        if Menu ==3:
+        if Menu ==2:
 
             while Menu != 0:
                 Menu = int(input(
-                    "1 for running LLM again, 2 for LLM analysis graphs, 3 for LLM vs human analysis graphs, 0 to quit:      "))
+                    "1 for running LLM again, 2 for LLM vs human analysis graphs, 0 to quit:      "))
                 if Menu == 1:
                     preprocessed_data = preprocess_references("References_LLM.txt")
                     perform_references_LLM_evaluation(preprocessed_data)
                 if Menu == 2:
-                    manually_processed_data = retreive_LLM_results()
-                    plotting_graphs(manually_processed_data)
-
-                if Menu == 3:
                     preprocessed_data = preprocess_references("All_references_classified.txt")
                     manually_processed_data = retreive_LLM_results()
 
                     additional_graphs(manually_processed_data, preprocessed_data)
-            #If you want to run the LLM again you can uncomment the following two lines
-            # preprocessed_data = preprocess_references("References_LLM.txt")
-            # perform_references_LLM_evaluation(preprocessed_data)
 
-            manually_processed_data = retreive_LLM_results()
-            plotting_graphs(manually_processed_data)
-            additional_graphs(manually_processed_data)
 def plotting_box_plot_results(files, graders, results):
     """
         This function uses the outputs from the main.py file to plot results.
