@@ -29,12 +29,20 @@ def Evaluate_domain_knowledge():
     #use this structure to loop through the files that you want analysed
     files = [
     "audit-O2C-PG",
-    "environmental-P2P-Walmart",
+    "environment-P2P-Walmart",
     "inefficiencies-AP-GE",
     "IT-IT-Volvo",
     "operational-Travel-Google",
     "regulatory-loan-wellsfargo"
     ]
+
+#     files = ["Crew-AP-GE.txt",
+# "Crew-IT-Volvo.txt",
+# "Crew-Loan-WellsFargo.txt",
+# "Crew-O2C-PG.txt",
+# "Crew-P2P-Walmart.txt",
+# "Crew-Travel-Google.txt"]
+
     ##Examples
     # files = ['/AP_1.txt', '/AP_2.txt', '/IT_cyber_1.txt',
     #              '/IT_cyber_2.txt', '/Loan_application_1.txt', '/Loan_application_2.txt',
@@ -42,7 +50,7 @@ def Evaluate_domain_knowledge():
     #              '/Travel_expenses_1.txt', '/Travel_expenses_2.txt',]
     # graders = ["Evaluate_R","Evaluate_N","Evaluate_M2","Evaluate_M"]
 
-    foldernames = ["DoS3_DK/"]
+    foldernames = ["DoS2_DK/DoS2_run2/"]
     for foldername in foldernames:
         for file in files:
             file = foldername + file
