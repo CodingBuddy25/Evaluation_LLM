@@ -1,4 +1,6 @@
 import re  # regular expression
+import sys
+
 import openai
 import os
 from langchain_openai import ChatOpenAI
@@ -13,7 +15,9 @@ def LLM_domain_knowledge(file, specific_file_question):
     # Given the following question: ... How would you grade the following answer from 1 (minimum) to 10 (maximum)?
     #I have changed this question to: see evaluation_question"""
 
-    file_path = f"""/Users/rensk/Scriptie/Reevaluation/LLM-as-a-judge/Evaluations Max/{file}"""
+    file_path = os.getcwd()
+    file_path = os.path.join(file_path, "DoS0_DK", "Evaluate_M",f"{file}")
+    print(file_path)
     with open(file_path, "r", encoding="utf-8") as file:
         answer_text = file.read()
 
@@ -201,6 +205,23 @@ def perform_DK_LLM_evaluation():
     'Travel_expenses_1.txt': [],
     'Travel_expenses_2.txt': []
 }
+
+    #Example answer of the filled dictionary
+    # evaluation_texts= {
+    #    'P2P_1.txt': [70, 90, 90, 70, 90, 90, 80, 90, 80, 80],
+    #     'P2P_2.txt': [80, 70, 60, 60, 0, 70, 80, 0, 70, 80],
+    #     'O2C_1.txt': [90, 70, 70, 80, 70, 70, 70, 70, 70, 80],
+    #     'O2C_2.txt': [80, 60, 70, 80, 70, 80, 70, 80, 70, 70],
+    #     "IT_cyber_1.txt": [70, 70, 80, 70, 60, 70, 70, 70, 70, 80],
+    #     'IT_cyber_2.txt': [60, 80, 70, 90, 60, 70, 70, 65, 80, 80],
+    #     'AP_1.txt': [70, 90, 80, 70, 80, 80, 60, 60, 80, 70],
+    #     'AP_2.txt': [70, 60, 70, 50, 70, 65, 80, 80, 60, 80],
+    #     "Travel_expenses_1.txt": [60, 0, 70, 70, 80, 40, 70, 90, 60, 80],
+    #     'Travel_expenses_2.txt': [70, 70, 50, 40, 70, 70, 80, 60, 82,85],
+    #     'Loan_application_1.txt': [44, 60, 70, 60, 70, 75, 70, 70, 80, 70],
+    #     'Loan_application_2.txt': [60, 90, 70, 80, 70, 60, 80, 70, 80, 80]
+    # }
+
     specific_file_question = {
     'AP_1.txt': "Can you find the bottlenecks and inefficiencies in an accounts payable (AP) process at General Electric (GE). What are potential causes for the inefficiencies that you identified?",
     'AP_2.txt': "Can you find the bottlenecks and inefficiencies in an accounts payable (AP) process at General Electric (GE). What are potential causes for the inefficiencies that you identified?",
@@ -215,35 +236,17 @@ def perform_DK_LLM_evaluation():
     'Travel_expenses_1.txt': "Can you find the operational risks in the travel expense submission process at Google. What are the operational risks for specific steps that you identified?",
     'Travel_expenses_2.txt': "Can you find the operational risks in the travel expense submission process at Google. What are the operational risks for specific steps that you identified?",
 }
+    for count in range(1):
+        #Change the count in range to 10 when performing the domain knowledge one.
+        for file in evaluation_texts.keys():
+            print("_________________________FILE:", file, "_______________________")
+            prompt_dk = LLM_domain_knowledge(file, specific_file_question[file])
+            resp_dk = pm4py.llm.openai_query(prompt_dk, api_key=api_key, openai_model=model)
+            # print("Response domain knowledge: \n", resp_dk)
+            percentage = finding_percentage_dk(resp_dk)
+            evaluation_texts[file].append(percentage)  # Adds the integer or "none" to the list for the file
 
-    # Uncomment if you want to run the LLM calls
-    # for count in range(1):
-    #     #Change the count in range to 10 when performing the domain knowledge one.
-    #     for file in evaluation_texts.keys():
-    #         print("_________________________FILE:", file, "_______________________")
-    #         prompt_dk = LLM_domain_knowledge(file, specific_file_question[file])
-    #         resp_dk = pm4py.llm.openai_query(prompt_dk, api_key=api_key, openai_model=model)
-    #         # print("Response domain knowledge: \n", resp_dk)
-    #         percentage = finding_percentage_dk(resp_dk)
-    #         evaluation_texts[file].append(percentage)  # Adds the integer or "none" to the list for the file
-
-    evaluation_texts_LLM= {
-       'P2P_1.txt': [70, 90, 90, 70, 90, 90, 80, 90, 80, 80],
-        'P2P_2.txt': [80, 70, 60, 60, 0, 70, 80, 0, 70, 80],
-        'O2C_1.txt': [90, 70, 70, 80, 70, 70, 70, 70, 70, 80],
-        'O2C_2.txt': [80, 60, 70, 80, 70, 80, 70, 80, 70, 70],
-        "IT_cyber_1.txt": [70, 70, 80, 70, 60, 70, 70, 70, 70, 80],
-        'IT_cyber_2.txt': [60, 80, 70, 90, 60, 70, 70, 65, 80, 80],
-        'AP_1.txt': [70, 90, 80, 70, 80, 80, 60, 60, 80, 70],
-        'AP_2.txt': [70, 60, 70, 50, 70, 65, 80, 80, 60, 80],
-        "Travel_expenses_1.txt": [60, 0, 70, 70, 80, 40, 70, 90, 60, 80],
-        'Travel_expenses_2.txt': [70, 70, 50, 40, 70, 70, 80, 60, 82,85],
-        'Loan_application_1.txt': [44, 60, 70, 60, 70, 75, 70, 70, 80, 70],
-        'Loan_application_2.txt': [60, 90, 70, 80, 70, 60, 80, 70, 80, 80]
-    }
-
-    results_analysis, raw_percentages = multiple_run_dkanalysis(evaluation_texts_LLM)
-
+    results_analysis, raw_percentages = multiple_run_dkanalysis(evaluation_texts)
     plotting_results(raw_percentages, results_analysis)
 
 def preprocess_references(textfile_name):
@@ -316,9 +319,10 @@ def perform_references_LLM_evaluation(preprocessed_data):
             print("Response references: \n", resp_ref, "\n")
 
 def retreive_LLM_results():
-    #Because the output of the LLM changes per round, in this variable are some of the results stored.
-    #The LLM could not return a corrent format so I will do that manually.
+    """Because the output of the LLM changes per round, in this variable are some of the results stored.
+    The LLM could not return a correct format so I will do that manually."""
 
+    #Dictionary made which contains the manually gathered data
     manually_processed_data = [{'CP': 4, 'SP': 3, 'Non-AR': 9, 'Non-AA': 25, 'SM or PR': 5, 'None': 2, 'Law': 0},
                                {'CP': 16, 'SP': 8, 'Non-AR': 12, 'Non-AA': 25, 'SM or PR': 0, 'None': 0, 'Law': 2},
                                {'CP': 10, 'SP': 6, 'Non-AR': 7, 'Non-AA': 14, 'SM or PR': 1, 'None': 0, 'Law': 2},
@@ -336,6 +340,25 @@ def retreive_LLM_results():
                                 50, 'O2C_2.txt', 64, 'P2P_1.txt', 64, 'P2P_2.txt', 87, 'Travel_expenses_1.txt',
                                 66, 'Travel_expenses_2.txt']]
 
+    # manually_processed_data = [{'CP': 0, 'SP': 0, 'Non-AR': 2, 'Non-AA': 10, 'SM or PR': 2, 'None': 7, 'Law': 0},
+    #                            {'CP': 0, 'SP': 9, 'Non-AR': 0, 'Non-AA': 0, 'SM or PR': 0, 'None': 1, 'Law': 0},
+    #                            {'CP': 9, 'SP': 0, 'Non-AR': 0, 'Non-AA': 0, 'SM or PR': 0, 'None': 9, 'Law': 2},
+    #                            {'CP': 5, 'SP': 2, 'Non-AR': 0, 'Non-AA': 8, 'SM or PR': 4, 'None': 0, 'Law': 3},
+    #                            {'CP': 0, 'SP': 2, 'Non-AR': 0, 'Non-AA': 9, 'SM or PR': 1, 'None': 1, 'Law': 0},
+    #                            {'CP': 0, 'SP': 0, 'Non-AR': 0, 'Non-AA': 4, 'SM or PR': 0, 'None': 2, 'Law': 0},
+    #                            [21, 'AP.txt', 10, 'IT_cyber.txt',
+    #                             20, 'Loan_application.txt', 22, 'O2C.txt',
+    #                             13, 'P2P.txt', 6, 'Travel_expenses.txt']]
+
+    # manually_processed_data = [{'CP': 4, 'SP': 3, 'Non-AR': 9, 'Non-AA': 25, 'SM or PR': 5, 'None': 2, 'Law': 0},
+    #                            {'CP': 16, 'SP': 8, 'Non-AR': 12, 'Non-AA': 25, 'SM or PR': 0, 'None': 0, 'Law': 2},
+    #                            {'CP': 10, 'SP': 6, 'Non-AR': 7, 'Non-AA': 14, 'SM or PR': 1, 'None': 0, 'Law': 2},
+    #                            {'CP': 3, 'SP': 6, 'Non-AR': 8, 'Non-AA': 36, 'SM or PR': 2, 'None': 0, 'Law': 0},
+    #                            {'CP': 15, 'SP': 2, 'Non-AR': 12, 'Non-AA': 19, 'SM or PR': 2, 'None': 0, 'Law': 2},
+    #                            {'CP': 7, 'SP': 6, 'Non-AR': 11, 'Non-AA': 38, 'SM or PR': 7, 'None': 0, 'Law': 2},
+    #                            [45, 'AP_1.txt', 40, 'IT_cyber_1.txt',
+    #                             52, 'Loan_application_1.txt', 71, 'O2C_1.txt',
+    #                             50, 'P2P_1.txt', 64, 'Travel_expenses_1.txt']]
     return manually_processed_data
 def plotting_graphs(final_data):
     Menu = 10

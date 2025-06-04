@@ -26,7 +26,7 @@ def remove_characters(file, Menu):
 def Evaluate_domain_knowledge():
     results = []
 
-    #use this structure to loop through the files that you want analysed
+    ##Example of files
     files = [
     "audit-O2C-PG",
     "environment-P2P-Walmart",
@@ -35,21 +35,7 @@ def Evaluate_domain_knowledge():
     "operational-Travel-Google",
     "regulatory-loan-wellsfargo"
     ]
-
-#     files = ["Crew-AP-GE.txt",
-# "Crew-IT-Volvo.txt",
-# "Crew-Loan-WellsFargo.txt",
-# "Crew-O2C-PG.txt",
-# "Crew-P2P-Walmart.txt",
-# "Crew-Travel-Google.txt"]
-
-    ##Examples
-    # files = ['/AP_1.txt', '/AP_2.txt', '/IT_cyber_1.txt',
-    #              '/IT_cyber_2.txt', '/Loan_application_1.txt', '/Loan_application_2.txt',
-    #              '/O2C_1.txt', '/O2C_2.txt', '/P2P_1.txt', '/P2P_2.txt',
-    #              '/Travel_expenses_1.txt', '/Travel_expenses_2.txt',]
-    # graders = ["Evaluate_R","Evaluate_N","Evaluate_M2","Evaluate_M"]
-
+    #Example of foldernames, you can add multiple foldernames
     foldernames = ["DoS2_DK/DoS2_run2/"]
     for foldername in foldernames:
         for file in files:
