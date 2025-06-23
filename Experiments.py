@@ -128,7 +128,7 @@ def plotting_results(raw_percentages, evaluation_statistics):
 
     while Menu != 0:
         Menu = int(input(
-            "1 LLM analysis, 2 LLM and human analysis, 0 to quit:      "))
+            "1 LLM analysis, 2 LLM and human analysis, 3 for DoS comparison, 0 to quit:      "))
         if Menu == 1:
             fig = plt.figure(figsize=(12, 6))
             plt.boxplot(raw_percentages,vert=False)
@@ -183,6 +183,33 @@ def plotting_results(raw_percentages, evaluation_statistics):
             plt.ylabel('Percentage (%)')
             plt.tight_layout()
             plt.show()
+
+        if Menu == 3:
+            fig = plt.figure()
+            plt.boxplot(raw_percentages,vert=False)
+            list_of_number_of_files = [text_name + 1 for text_name in range(len(evaluation_statistics.keys()))]
+            #Looks at the keys. If there are three keys, it will return [1,2,3], if there are 4: [1,2,3,4] etc.
+            print(list_of_number_of_files, list(evaluation_statistics.keys()))
+            plt.yticks(list_of_number_of_files, list(evaluation_statistics.keys()))
+            plt.xlabel('Contribution [%]')
+            plt.ylabel('Setup')
+
+            plt.tight_layout()
+
+            fig2 = plt.figure()
+            averages = [statistics_per_file['Average'] for statistics_per_file in evaluation_statistics.values()]
+            sd_list = [statistics_per_file['sd'] for statistics_per_file in evaluation_statistics.values()]
+            # plt.bar(list(evaluation_statistics.keys()), averages)
+            plt.bar(["DoS0", "DoS2", "DoS4"], averages)
+            # plt.errorbar(list(evaluation_statistics.keys()), averages, yerr=sd_list, fmt="o", color="r")
+            plt.errorbar(["DoS0", "DoS2", "DoS4"], averages, yerr=sd_list, fmt="o", color="r")
+
+            # plt.title("Percentage of external domain knowledge (using the method LLM-as-a-judge) per output file")
+            # Had to remove the title
+            plt.ylabel('Contribution [%]')
+            plt.tight_layout()
+            plt.show()
+
 def perform_DK_LLM_evaluation():
     model = ChatOpenAI(temperature=0, model_name="gpt-4o-mini")
     api_key = os.getenv('OPENAI_API_KEY')
@@ -243,7 +270,13 @@ def perform_DK_LLM_evaluation():
         'Loan_application_2.txt': [60, 90, 70, 80, 70, 60, 80, 70, 80, 80]
     }
 
-    results_analysis, raw_percentages = multiple_run_dkanalysis(evaluation_texts_LLM)
+    evaluation_dictionary = {
+        'DoS0': [54.67, 56.65, 44.46, 64.13, 70.30, 69.93],
+        'DoS2': [81.56, 83.86, 68.57, 70.73, 89.07, 69.86],
+        'DoS4': [78.83, 67.51, 36.09, 59.87, 81.45, 69.96]
+    }
+
+    results_analysis, raw_percentages = multiple_run_dkanalysis(evaluation_dictionary)
 
     plotting_results(raw_percentages, results_analysis)
 
@@ -496,54 +529,58 @@ def plotting_graphs(final_data, finaldata2):
             paper_names = final_data[-1][1::2]
             categories_short_name = ['CP','SP','N-AR','N-AA','SMPR','None','Law']
 
-            axs[0, 0].bar(x - 0.1, list(final_data[1].values()), width=0.2, color='cyan')
+            axs[0, 0].bar(x - 0.1, list(final_data[0].values()), width=0.2, color='cyan')
             axs[0, 0].bar(x + 0.1, list(finaldata2[0].values()), width=0.2, color='orange')
             axs[0, 0].set_title(paper_names[1])
             axs[0, 0].set_ylabel('Count')
-            axs[0, 0].legend(["Crew", "Flow"])
+            axs[0, 0].legend(["DoS2", "DoS2FH"])
             axs[0, 0].set_xticks(x,categories_short_name, rotation=45)
             #
             # axs[0,0].bar(categories_short_name,  list(final_data[0].values()))
             # axs[0,0].set_title(paper_names[0])
             # axs[0,0].set_ylabel('Count')
 
-            axs[0,1].bar(categories_short_name,  list(final_data[0].values()), color='cyan')
+            axs[0, 1].bar(x - 0.1, list(final_data[1].values()), width=0.2, color='cyan')
+            axs[0, 1].bar(x + 0.1, list(finaldata2[1].values()), width=0.2, color='orange')
             axs[0,1].set_title(paper_names[0])
-            axs[0, 1].legend(["Crew"])
+            axs[0, 1].legend(["DoS2", "DoS2FH"])
             axs[0,1].set_ylabel('Count')
+            axs[0, 1].set_xticks(x,categories_short_name, rotation=45)
 
-            axs[0,2].bar(categories_short_name,  list(final_data[2].values()), color='cyan')
+            axs[0, 2].bar(x - 0.1, list(final_data[2].values()), width=0.2, color='cyan')
+            axs[0, 2].bar(x + 0.1, list(finaldata2[2].values()), width=0.2, color='orange')
             axs[0,2].set_title(paper_names[2])
-            axs[0, 2].legend(["Crew"])
-
+            axs[0, 2].legend(["DoS2", "DoS2FH"])
             axs[0,2].set_ylabel('Count')
+            axs[0, 2].set_xticks(x,categories_short_name, rotation=45)
+
 
             # axs[1, 0].bar(categories_short_name, list(final_data[3].values()))
             # axs[1, 0].set_title(paper_names[3])
             # axs[1, 0].set_ylabel('Count')
             axs[1, 0].bar(x - 0.1, list(final_data[3].values()), width=0.2, color='cyan')
-            axs[1, 0].bar(x + 0.1, list(finaldata2[1].values()), width=0.2, color='orange')
+            axs[1, 0].bar(x + 0.1, list(finaldata2[3].values()), width=0.2, color='orange')
             axs[1, 0].set_title(paper_names[3])
             axs[1, 0].set_ylabel('Count')
-            axs[1, 0].legend(["Crew", "Flow"])
+            axs[1, 0].legend(["DoS2", "DoS2FH"])
             axs[1, 0].set_xticks(x,categories_short_name, rotation=45)
 
             # axs[1, 1].bar(categories_short_name, list(final_data[4].values()))
             # axs[1, 1].set_title(paper_names[4])
             # axs[1, 1].set_ylabel('Count')
             axs[1, 1].bar(x - 0.1, list(final_data[4].values()), width=0.2, color='cyan')
-            axs[1, 1].bar(x + 0.1, list(finaldata2[2].values()), width=0.2, color='orange')
+            axs[1, 1].bar(x + 0.1, list(finaldata2[4].values()), width=0.2, color='orange')
             axs[1, 1].set_title(paper_names[4])
             axs[1, 1].set_ylabel('Count')
-            axs[1, 1].legend(["Crew", "Flow"])
+            axs[1, 1].legend(["DoS2", "DoS2FH"])
             axs[1, 1].set_xticks(x,categories_short_name, rotation=45)
 
 
             axs[1, 2].bar(x - 0.1, list(final_data[5].values()), width=0.2, color='cyan')
-            axs[1, 2].bar(x + 0.1, list(finaldata2[3].values()), width=0.2, color='orange')
+            axs[1, 2].bar(x + 0.1, list(finaldata2[5].values()), width=0.2, color='orange')
             axs[1, 2].set_title(paper_names[5])
             axs[1, 2].set_ylabel('Count')
-            axs[1, 2].legend(["Crew", "Flow"])
+            axs[1, 2].legend(["DoS2", "DoS2FH"])
             axs[1, 2].set_xticks(x,categories_short_name, rotation=45)
 
             # axs[1, 2].bar(categories_short_name, list(final_data[5].values()))
@@ -831,11 +868,13 @@ if __name__ == "__main__":
                                [21, 'AP.txt', 10, 'IT_cyber.txt',
                                 20, 'Loan_application.txt', 22, 'O2C.txt',
                                 13, 'P2P.txt', 6, 'Travel_expenses.txt']]
-            preprocessed_data2=[{'CP': 2, 'SP': 3, 'Non-AR': 1, 'Non-AA': 1, 'SM or PR': 0, 'None': 1, 'Law': 0},
-                               {'CP': 1, 'SP': 1, 'Non-AR': 1, 'Non-AA': 10, 'SM or PR': 3, 'None': 1, 'Law': 0},
-                               {'CP': 2, 'SP': 3, 'Non-AR': 0, 'Non-AA': 9, 'SM or PR': 1, 'None': 0, 'Law': 6},
-                               {'CP': 0, 'SP': 0, 'Non-AR': 6, 'Non-AA': 9, 'SM or PR': 5, 'None': 0, 'Law': 0},
-                                [8, 'IT_cyber.txt', 17, 'O2C.txt', 21, 'P2P.txt', 20, 'Travel_expenses.txt']]
+            preprocessed_data2=[{'CP': 0, 'SP': 0, 'Non-AR': 2, 'Non-AA': 19, 'SM or PR': 0, 'None': 0, 'Law': 0},
+                                {'CP': 2, 'SP': 3, 'Non-AR': 1, 'Non-AA': 1, 'SM or PR': 0, 'None': 1, 'Law': 0},
+                                {'CP': 1, 'SP': 0, 'Non-AR': 1, 'Non-AA': 5, 'SM or PR': 3, 'None': 0, 'Law': 0},
+                                {'CP': 1, 'SP': 1, 'Non-AR': 1, 'Non-AA': 10, 'SM or PR': 3, 'None': 1, 'Law': 0},
+                                {'CP': 2, 'SP': 3, 'Non-AR': 0, 'Non-AA': 9, 'SM or PR': 1, 'None': 0, 'Law': 6},
+                                {'CP': 0, 'SP': 0, 'Non-AR': 6, 'Non-AA': 9, 'SM or PR': 5, 'None': 0, 'Law': 0},
+                                [19, 'AP.txt',8, 'IT_cyber.txt',10, 'Loan_application.txt' ,17, 'O2C.txt', 21, 'P2P.txt', 20, 'Travel_expenses.txt']]
             plotting_graphs(preprocessed_data, preprocessed_data2)
         if Menu ==3:
 
