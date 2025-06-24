@@ -46,7 +46,7 @@ Improvements to the incident handling process must factor in these risks, ensuri
 
 Analysis of recent incidents within Volvo and the wider automotive industry underscores the urgent need for heightened cybersecurity measures. The 2023 breach involving the theft of proprietary R&D data underscored vulnerabilities in access controls and employee training deficiencies (Cybersecurity & Infrastructure Security Agency, 2023) [source](https://www.cisa.gov).
 
-Moreover, the identification of critical vulnerabilities, such as CVE-2023-29389, illustrating weaknesses within vehicle networks, has drawn attention to the urgency of more stringent cybersecurity controls. These incidents exemplify the persistent threat of cybercriminals targeting automotive systems, reinforcing the necessity for continuous review and adaptation of incident handling processes.}
+Moreover, the identification of critical vulnerabilities, such as CVE-2023-29389, illustrating weaknesses within vehicle networks, has drawn attention to the urgency of more stringent cybersecurity controls. These incidents exemplify the persistent threat of cybercriminals targeting automotive systems,} reinforcing the necessity for continuous review and adaptation of incident handling processes.
 
 ## Best Practices and Frameworks Implemented by Volvo
 
