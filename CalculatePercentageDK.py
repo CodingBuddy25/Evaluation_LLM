@@ -27,9 +27,10 @@ def Evaluate_domain_knowledge():
     results = []
 
     ##Example of files
-    files = ["Flow-AP-GE.txt", "Flow-audit-PG.txt"]
+    # files = ["Audit-O2C-PG", "EnvironmentWalmart-P2P","IT-IT-Volvo","Operational-Google-Travel-1"]
+    files = ["Environment-Walmart-P2P"]
     #Example of foldernames, you can add multiple foldernames
-    foldernames = ["DoS2_DK/DoS2_HITL_flow/"]
+    foldernames = ["DoS0_DK/Run3/"]
     for foldername in foldernames:
         for file in files:
             file = foldername + file
