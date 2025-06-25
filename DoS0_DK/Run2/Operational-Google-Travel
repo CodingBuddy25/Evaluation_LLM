@@ -6,9 +6,9 @@
 
 \hl{The cornerstone of Google's travel expenses process resides in its comprehensive policies and procedures. These guidelines dictate how travel expenses are pre-approved, documented, and submitted for reimbursement. The precise framework governs factors such as allowable expenses and the necessary timelines for submissions. However, there exist concerns related to these procedures that may introduce operational risks. For instance, discrepancies in the documentation process can lead to expense fraud if approvals are not stringently verified. The step "Submit Travel Request -> Review Expenses" clearly underlines the necessity for meticulous oversight (Source: HCCC, Paxes, St. John's University) to prevent unintended consequences within the financial processes involved at Google.
 
-One potential cause of operational risk arises from gaps within these policies. When employees find the corporate travel system less user-friendly compared to consumer alternatives, it can lead to inefficient practices (Source: BusinessNewsDaily). Without intuitive systems in place, the likelihood of errors in submissions may increase, thus elevating risks related to non-compliance and fraud.
+One potential cause of operational risk arises from gaps within these policies. When employees find the corporate travel system less user-friendly compared to consumer alternatives, it can lead to inefficient practices (Source: BusinessNewsDaily). Without intuitive systems in place, the likelihood of errors in submissions may increase, thus elevating risks related to non-compliance and fraud.}
 
-### Technological Systems
+\hl{### Technological Systems
 
 Google employs advanced expense management solutions like Zoho Expense and Expensify, linked seamlessly with Google Workspace to facilitate travel expense tracking. Technology plays an essential role in automating the travel expenses process, thereby enhancing data accuracy and compliance through directed pathways. However, reliance on technology also introduces vulnerabilities, such as system failures or software compatibility problems. The crucial PM_agent step "Receive Reimbursement Request -> Approve Expenses" illuminates the importance of these technological interfaces (Source: AltexSoft, Expensify, Fyle), as any technical issues could hinder the timely approval of travel expenses.
 
@@ -22,7 +22,7 @@ Incorporating historical incidents into learning practices can offer substantial
 
 ### Employee Behavior and Culture
 
-\hl{The influence of Google’s unique organizational culture is pivotal in shaping the travel expenses process. Its culture fosters autonomy and encourages employees to seek cost-effective solutions. The PM_agent process "Audit Travel Expenses -> Implement Controls" showcases the significance of such organizational practices in reducing operational risks (Source: Phocuswire, Commonwealth Joe, Medium, Culture Partners).} Incentives, such as cashback for employees who save on travel costs, further motivate responsible behavior and compliance with expense management policies.
+The influence of Google’s unique organizational culture is pivotal in shaping the travel expenses process. Its culture fosters autonomy and encourages employees to seek cost-effective solutions. The PM_agent process "Audit Travel Expenses -> Implement Controls" showcases the significance of such organizational practices in reducing operational risks (Source: Phocuswire, Commonwealth Joe, Medium, Culture Partners). Incentives, such as cashback for employees who save on travel costs, further motivate responsible behavior and compliance with expense management policies.
 
 \hl{Conversely, the promotion of autonomy could also lead to potential misalignments between employee judgment and organizational policies. Employees may inadvertently overlook some expense guidelines in pursuit of more creative solutions or savings.} This behavioral dynamic necessitates continuous assessment to align employee actions with established policies and further fortify compliance to mitigate the operational risks linked to employee discretion.
 
